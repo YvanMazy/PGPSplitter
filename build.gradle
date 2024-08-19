@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.gradleup.shadow' version '8.3.0'
+}
+
+group = 'be.yvanmazy'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:24.1.0'
+
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
+    implementation 'org.bouncycastle:bcpg-jdk18on:1.78.1'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+application {
+    mainClass = 'be.yvanmazy.pgpsplitter.Main'
+}
